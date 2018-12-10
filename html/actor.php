@@ -12,9 +12,9 @@
 		</a>
 		<nav id="menu">
 			<ul>
-				<li><a href="./index.html">Accueil</a></li>
-				<li><a href="./Director.html">Directeurs</a></li>
-				<li><a href="./actor.html">Acteurs</a></li>
+				<li><a href="./index.php">Accueil</a></li>
+				<li><a href="./director.php">Directeurs</a></li>
+				<li><a href="./actor.php">Acteurs</a></li>
 			</ul>
 		</nav>
 	</header>

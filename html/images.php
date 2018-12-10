@@ -1,14 +1,10 @@
 <?php
-try {
-    $dsn = 'mysql:host=mysql-videotheque.alwaysdata.net;dbname=videotheque_db;charset=utf8';
-    $bdd = new PDO($dsn, '170657', 'Videotheque');
-    $bdd->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    $bdd->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_OBJ);
-} catch (PDOException $e) {
-    // ...
-}
+$link = mysqli_connect('mysql-videotheque.alwaysdata.net', '170657', 'Videotheque')
+or die('Pb de connexion au serveur: ' . mysqli_connect_error());
+mysqli_select_db($link, 'videotheque_db') or die ('Pb de sélection BD : ' . mysqli_error($link));
 
-$query = $bdd->query('SELECT id FROM picture');
+
+$query ='SELECT id FROM picture';
 
 while ($donnees = $query->fetch())
 {

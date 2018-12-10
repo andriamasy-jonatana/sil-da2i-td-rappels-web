@@ -1,26 +1,33 @@
 <?php
-
-try {
-$dsn = 'mysql:host=mysql-videotheque.alwaysdata.net;dbname=videotheque_db;charset=utf8';
-$bdd = new PDO($dsn, '170657', 'Videotheque');
-$bdd->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-$bdd->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_OBJ);
-} catch (PDOException $e) {
-// ...
-}
-
+$link = mysqli_connect('mysql-videotheque.alwaysdata.net', '170657', 'Videotheque')
+or die('Pb de connexion au serveur: ' . mysqli_connect_error());
+mysqli_select_db($link, 'videotheque_db') or die ('Pb de sélection BD : ' . mysqli_error($link));
 ?>
-
 
 <section>
     <h2>Informations sur le film</h2>
     <article class="infos">
         <h3>Date de sortie du film :</h3>
         <ul>
-            <li><?php $query = $bdd->query('SELECT releaseDate FROM movie');
-            $query->fetch();
+            <?php $query ='SELECT releaseDate FROM movie';
+            $result = mysqli_query($link, $query);
             $reponse = $query;
-            echo $reponse['releaseDate']?></li>
+            if (!$result)
+            {
+                echo 'Impossible d\'exécuter la requête ', $query, ' : ', mysqli_error($link);
+            }
+            else
+            {
+                if (mysqli_num_rows($result) != 0)
+                {
+                    while ($row = mysqli_fetch_assoc($result))
+                    {?>
+                        <li><?php echo $row['releaseDate'];?></li>
+                    <?php
+                    }
+                }
+            }
+            ?>
         </ul>
 
         <h3> Noms des acteurs principaux :</h3>
@@ -32,9 +39,44 @@ $bdd->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_OBJ);
         </ul>
 
         <h3> Synopsis :</h3>
-        <p>Lorsqu\'un lion, un zèbre, une girafe, un hippopotame et une poignée de pingouins psychotiques fuient leur zoo new-yorkais pour secourir l\'un des leurs, l\'aventure s\'écrit avec un grand A. Et lorsque le destin les réunit sur l\'île de Madagascar, ils doivent apprendre en formation accélérée les rudiments de la vie à l\'air libre.</p>
-
+        <?php $query ='SELECT synopsis FROM movie';
+        $result = mysqli_query($link, $query);
+        $reponse = $query;
+        if (!$result)
+        {
+            echo 'Impossible d\'exécuter la requête ', $query, ' : ', mysqli_error($link);
+        }
+        else
+        {
+            if (mysqli_num_rows($result) != 0)
+            {
+                while ($row = mysqli_fetch_assoc($result))
+                {?>
+                    <p><?php echo $row['synopsis'];?></p>
+                    <?php
+                }
+            }
+        }
+        ?>
         <h3> Note :</h3>
-        <p>6.1 / 10</p>
+        <?php $query ='SELECT rating FROM movie';
+        $result = mysqli_query($link, $query);
+        $reponse = $query;
+        if (!$result)
+        {
+            echo 'Impossible d\'exécuter la requête ', $query, ' : ', mysqli_error($link);
+        }
+        else
+        {
+            if (mysqli_num_rows($result) != 0)
+            {
+                while ($row = mysqli_fetch_assoc($result))
+                {?>
+                    <p><?php echo $row['rating'];?> / 10</p>
+                    <?php
+                }
+            }
+        }
+        ?>
     </article>
-</section>;
+</section>
