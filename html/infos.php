@@ -1,7 +1,5 @@
 <?php
-$link = mysqli_connect('mysql-videotheque.alwaysdata.net', '170657', 'Videotheque')
-or die('Pb de connexion au serveur: ' . mysqli_connect_error());
-mysqli_select_db($link, 'videotheque_db') or die ('Pb de sélection BD : ' . mysqli_error($link));
+require '../config/config.php'
 ?>
 
 <section>
@@ -9,7 +7,7 @@ mysqli_select_db($link, 'videotheque_db') or die ('Pb de sélection BD : ' . mys
     <article class="infos">
         <h3>Date de sortie du film :</h3>
         <ul>
-            <?php $query ='SELECT releaseDate FROM movie';
+            <?php $query = 'SELECT releaseDate FROM movie';
             $result = mysqli_query($link, $query);
             $reponse = $query;
             if (!$result)

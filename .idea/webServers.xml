@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="920a7d33-4164-4dae-92a1-f6dd33852fb5" name="videotheque.alwaysdata.net" url="http://videotheque.alwaysdata.net">
+        <fileTransfer host="ssh-videotheque.alwaysdata.net" port="22" rootFolder="/home/videotheque/www" accessType="SFTP">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" shareSSLContext="true" />
+          </advancedOptions>
+          <option name="port" value="22" />
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>
