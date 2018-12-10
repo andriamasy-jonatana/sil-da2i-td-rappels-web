@@ -23,7 +23,7 @@ mysqli_select_db($link, 'videotheque_db') or die ('Pb de sélection BD : ' . mys
                     while ($row = mysqli_fetch_assoc($result))
                     {?>
                         <li><?php echo $row['releaseDate'];?></li>
-                    <?php
+                        <?php
                     }
                 }
             }
@@ -42,40 +42,20 @@ mysqli_select_db($link, 'videotheque_db') or die ('Pb de sélection BD : ' . mys
         <?php $query ='SELECT synopsis FROM movie';
         $result = mysqli_query($link, $query);
         $reponse = $query;
-        if (!$result)
-        {
-            echo 'Impossible d\'exécuter la requête ', $query, ' : ', mysqli_error($link);
-        }
-        else
-        {
-            if (mysqli_num_rows($result) != 0)
-            {
-                while ($row = mysqli_fetch_assoc($result))
-                {?>
-                    <p><?php echo $row['synopsis'];?></p>
-                    <?php
-                }
-            }
+        while ($row = mysqli_fetch_assoc($result))
+        {?>
+            <p><?php echo $row['synopsis'];?></p>
+            <?php
         }
         ?>
         <h3> Note :</h3>
         <?php $query ='SELECT rating FROM movie';
         $result = mysqli_query($link, $query);
         $reponse = $query;
-        if (!$result)
-        {
-            echo 'Impossible d\'exécuter la requête ', $query, ' : ', mysqli_error($link);
-        }
-        else
-        {
-            if (mysqli_num_rows($result) != 0)
-            {
-                while ($row = mysqli_fetch_assoc($result))
-                {?>
-                    <p><?php echo $row['rating'];?> / 10</p>
-                    <?php
-                }
-            }
+        while ($row = mysqli_fetch_assoc($result))
+        {?>
+            <p><?php echo $row['rating'];?> / 10</p>
+            <?php
         }
         ?>
     </article>
