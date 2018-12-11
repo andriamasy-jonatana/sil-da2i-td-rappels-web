@@ -26,7 +26,6 @@ getBlock('header.php');
     </li>
 </ul>
 <?php
-getBlock('infos.php');
 getBlock('images.php');
 ?>
 

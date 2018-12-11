@@ -7,7 +7,7 @@ require '../config/config.php'
     <article class="infos">
         <h3>Date de sortie du film :</h3>
         <ul>
-            <?php $query = 'SELECT releaseDate FROM movie';
+            <?php $query = 'SELECT releaseDate FROM movie WHERE id= 1';
             $result = mysqli_query($link, $query);
             $reponse = $query;
             if (!$result)

@@ -18,6 +18,6 @@
 			</ul>
 		</nav>
 	</header>
-	<footer>Jonatana AJ. Andriamasy</footer>
+    <?php getBlock('footer.php') ?>
 </body>
 </html>
