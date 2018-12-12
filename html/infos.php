@@ -17,24 +17,29 @@ getBlock('header.php');
 <section>
     <h2>Informations</h2>
     <article>
-        <h3>Titre : <?php echo $movie['title']?></h3>
+        <h3>Titre du film :</h3>
+        <h4><?php echo $movie['title']?></h4>
+
+        <h3>Réalisateur :</h3>
+        <a></a>
 
         <h3>Date de sortie du film :</h3>
         <ul>
-            <li><?php
-                $date = strftime('%d %B %Y', strtotime($movie['releaseDate']));
+            <li><?php $date = strftime('%d %B %Y', strtotime($movie['releaseDate']));
                 echo $date;?></li>
         </ul>
 
-        <h3> Synopsis :</h3>
+        <h3>Synopsis :</h3>
         <p><?php echo $movie['synopsis'];?></p>
 
-        <h3> Note :</h3>
+        <h3>Note :</h3>
         <a><?php echo $movie['rating'];?> / 10</a>
+
+        <h3></h3>
 
         <h3>Acteurs :</h3>
         <ul>
-            <li>Alex le lion</li>
+            <li></li>
         </ul>
     </article>
 </section>
