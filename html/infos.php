@@ -1,18 +1,17 @@
 <?php
 require '../config/config.php';
-require 'index.php'
+require 'getBlock.php';
+require 'head.php';
 ?>
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="utf-8">
-    <link rel="stylesheet" type="text/css" href="../css/style.css">
-    <title>Madagascar</title>
-</head>
+
+<body>
+<?php
+getBlock('header.php');
+?>
 <body>
 <section>
-    <h2>Informations sur le film</h2>
-    <article class="infos">
+    <h2>Informations</h2>
+    <article>
         <h3>Date de sortie du film :</h3>
         <ul>
             <?php $query = 'SELECT releaseDate FROM movie';
@@ -67,4 +66,3 @@ require 'index.php'
     </article>
 </section>
 </body>
-</html>

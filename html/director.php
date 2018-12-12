@@ -1,11 +1,19 @@
+<?php
+function getBlock($file, $data = []) {
+require $file;
+}
+?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-	<meta charset="utf-8">
-	<link rel="stylesheet" type="text/css" href="../css/style.css">
-	<title>Madagascar</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="../css/style.css">
+    <title>Madagascar</title>
 </head>
 <body>
+<?php
+getBlock('header.php');
+?>
 	<header>
 		<a href="./index.html">
 			<img class="photo_accueil" src="../css/img/Madagascar_(film)_Logo.png" alt="Accueil">

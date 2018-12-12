@@ -1,9 +1,6 @@
 <?php
 require '../config/config.php';
-
-function getBlock($file, $data = []) {
-    require $file;
-}
+require 'getBlock.php';
 
 $queryMovie = $bdd->prepare('SELECT * FROM movie ORDER BY title ASC');
 $queryMovie -> execute();
@@ -13,14 +10,10 @@ $queryDirector -> execute(array("director"));
 
 $queryActor = $bdd->prepare('SELECT * FROM movieHasPerson, person WHERE movieHasPerson.idPerson = person.id AND role=?');
 $queryActor -> execute(array("actor"));
+
+getBlock('head.php')
 ?>
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="utf-8">
-    <link rel="stylesheet" type="text/css" href="../css/style.css">
-    <title>Madagascar</title>
-</head>
+
 <body>
 <?php
 getBlock('header.php');
