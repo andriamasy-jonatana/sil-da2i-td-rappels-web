@@ -2,6 +2,11 @@
 require '../config/config.php';
 require 'getBlock.php';
 require 'head.php';
+
+$getId = $_GET["id"];
+$queryInfosMovie = $bdd->prepare('SELECT * FROM movie WHERE id=?');
+$queryInfosMovie -> execute(array($getId));
+$movie = $queryInfosMovie ->fetch();
 ?>
 
 <body>
@@ -12,57 +17,25 @@ getBlock('header.php');
 <section>
     <h2>Informations</h2>
     <article>
+        <h3>Titre : <?php echo $movie['title']?></h3>
+
         <h3>Date de sortie du film :</h3>
         <ul>
-            <?php $query = 'SELECT releaseDate FROM movie';
-            $result = mysqli_query($link, $query);
-            $reponse = $query;
-            if (!$result)
-            {
-                echo 'Impossible d\'exécuter la requête ', $query, ' : ', mysqli_error($link);
-            }
-            else
-            {
-                if (mysqli_num_rows($result) != 0)
-                {
-                    while ($row = mysqli_fetch_assoc($result))
-                    {?>
-                        <li><?php echo $row['releaseDate'];?></li>
-                        <?php
-                    }
-                }
-            }
-            ?>
-        </ul>
-
-        <h3> Noms des acteurs principaux :</h3>
-        <ul>
-            <li>Alex le lion</li>
-            <li>Marty le zèbre</li>
-            <li>Gloria l\'hippopotame</li>
-            <li>Melman la girafe</li>
+            <li><?php
+                $date = strftime('%d %B %Y', strtotime($movie['releaseDate']));
+                echo $date;?></li>
         </ul>
 
         <h3> Synopsis :</h3>
-        <?php $query ='SELECT synopsis FROM movie';
-        $result = mysqli_query($link, $query);
-        $reponse = $query;
-        while ($row = mysqli_fetch_assoc($result))
-        {?>
-            <p><?php echo $row['synopsis'];?></p>
-            <?php
-        }
-        ?>
+        <p><?php echo $movie['synopsis'];?></p>
+
         <h3> Note :</h3>
-        <?php $query ='SELECT rating FROM movie';
-        $result = mysqli_query($link, $query);
-        $reponse = $query;
-        while ($row = mysqli_fetch_assoc($result))
-        {?>
-            <p><?php echo $row['rating'];?> / 10</p>
-            <?php
-        }
-        ?>
+        <a><?php echo $movie['rating'];?> / 10</a>
+
+        <h3>Acteurs :</h3>
+        <ul>
+            <li>Alex le lion</li>
+        </ul>
     </article>
 </section>
 </body>

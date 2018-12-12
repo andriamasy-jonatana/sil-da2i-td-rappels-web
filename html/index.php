@@ -22,7 +22,7 @@ getBlock('header.php');
 <ul>
     <?php while($movie = $queryMovie -> fetch()) {?>
         <li>
-            <a href="./infos.php"><?= $movie['title'] ?></a>
+            <a href="./infos.php?id=<?= $movie['id']?>"><?= $movie['title'] ?></a>
         </li>
     <?php }?>
 </ul>
