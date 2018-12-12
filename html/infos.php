@@ -1,13 +1,21 @@
 <?php
-require '../config/config.php'
+require '../config/config.php';
+require 'index.php'
 ?>
-
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="../css/style.css">
+    <title>Madagascar</title>
+</head>
+<body>
 <section>
     <h2>Informations sur le film</h2>
     <article class="infos">
         <h3>Date de sortie du film :</h3>
         <ul>
-            <?php $query = 'SELECT releaseDate FROM movie WHERE id= 1';
+            <?php $query = 'SELECT releaseDate FROM movie';
             $result = mysqli_query($link, $query);
             $reponse = $query;
             if (!$result)
@@ -58,3 +66,5 @@ require '../config/config.php'
         ?>
     </article>
 </section>
+</body>
+</html>
