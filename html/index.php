@@ -11,8 +11,8 @@ $queryMovie -> execute();
 $queryDirector = $bdd->prepare('SELECT * FROM movieHasPerson, person WHERE movieHasPerson.idPerson = person.id AND role=?');
 $queryDirector -> execute(array("director"));
 
-$queryActor = $bdd->prepare('SELECT * FROM movie ORDER BY title ASC');
-$queryActor -> execute();
+$queryActor = $bdd->prepare('SELECT * FROM movieHasPerson, person WHERE movieHasPerson.idPerson = person.id AND role=?');
+$queryActor -> execute(array("actor"));
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -28,9 +28,9 @@ getBlock('header.php');
 <h1>Films</h1>
 <ul>
     <?php while($movie = $queryMovie -> fetch()) {?>
-    <li>
-        <a href="./infos.php"><?= $movie['title'] ?></a>
-    </li>
+        <li>
+            <a href="./infos.php"><?= $movie['title'] ?></a>
+        </li>
     <?php }?>
 </ul>
 
@@ -38,11 +38,19 @@ getBlock('header.php');
 <ul>
     <?php while($director = $queryDirector -> fetch()) {?>
         <li>
-            <a href="./infos.php"><?= $director['lastname'] ?></a>
+            <a href="./infos.php"><?= $director['firstname'] . " " . $director['lastname']?></a>
         </li>
     <?php }?>
 </ul>
+
 <h1>Acteurs</h1>
+<ul>
+    <?php while($actor = $queryActor -> fetch()) {?>
+        <li>
+            <a href="./infos.php"><?= $actor['firstname'] . " " . $actor['lastname']?></a>
+        </li>
+    <?php }?>
+</ul>
 
 <?php getBlock('footer.php') ?>
 </body>
